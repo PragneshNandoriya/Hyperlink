@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable name="phoneactivity" type="com.example.hyperlink.PhoneVerifyActivity"/>
+    </data>
+<androidx.constraintlayout.widget.ConstraintLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".PhoneVerifyActivity">
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginEnd="@dimen/phonever_startmagin"
+        android:layout_marginRight="@dimen/phonever_startmagin"
+        android:layout_marginStart="@dimen/phonever_startmagin"
+        android:layout_marginLeft="@dimen/phonever_startmagin">
+
+
+
+    <ImageView
+        android:id="@+id/img_phone"
+        android:layout_width="89dp"
+        android:layout_height="89dp"
+        app:srcCompat="@drawable/ic_phone"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="122dp"
+        />
+
+    <TextView
+        android:id="@+id/txt_phoneverification"
+        android:layout_width="181dp"
+        android:layout_height="59dp"
+        android:textSize="22dp"
+        android:textColor="#000000"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="241dp"
+        android:text="@string/phone_verification"
+        android:fontFamily="@font/montserrat_light"/>
+
+        <TextView
+            android:id="@+id/txt_otpdesc"
+            android:layout_width="276dp"
+            android:layout_height="36dp"
+            android:textSize="13sp"
+            android:textColor="#A6A7B1"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_marginTop="312dp"
+            android:text="@string/otpdescription"
+            android:fontFamily="@font/montserrat_light"/>
+
+
+
+            <RelativeLayout
+                android:id="@+id/rel_no1"
+                android:layout_width="70.52dp"
+                android:layout_height="48dp"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                android:layout_marginTop="376dp"
+                android:background="@drawable/rectangle_white">
+
+                <EditText
+                    android:id="@+id/firstchar"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:inputType="numberPassword"
+                    android:gravity="center"
+                    android:maxLength="1"
+                    android:background="@android:color/transparent"/>
+            </RelativeLayout>
+            <RelativeLayout
+                android:id="@+id/rel_no2"
+                android:layout_width="70.52dp"
+                android:layout_height="48dp"
+                android:layout_marginTop="376dp"
+                app:layout_constraintTop_toTopOf="parent"
+                android:layout_marginStart="11.48dp"
+                android:layout_marginLeft="11.48dp"
+                app:layout_constraintStart_toEndOf="@id/rel_no1"
+                android:background="@drawable/rectangle_white">
+
+                <EditText
+                    android:id="@+id/secondchar"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:inputType="numberPassword"
+                    android:gravity="center"
+                    android:maxLength="1"
+                    android:background="@android:color/transparent"/>
+            </RelativeLayout>
+            <RelativeLayout
+                android:id="@+id/rel_no3"
+                android:layout_width="70.52dp"
+                android:layout_height="48dp"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toEndOf="@id/rel_no2"
+                android:background="@drawable/rectangle_white"
+                android:layout_marginTop="376dp"
+                android:layout_marginStart="11.48dp"
+                android:layout_marginLeft="11.48dp">
+
+                <EditText
+                    android:id="@+id/thirdchar"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:inputType="numberPassword"
+                    android:gravity="center"
+                    android:maxLength="1"
+                    android:background="@android:color/transparent"/>
+            </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/rel_no4"
+            android:layout_width="70.52dp"
+            android:layout_height="48dp"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toEndOf="@id/rel_no3"
+            android:background="@drawable/rectangle_white"
+            android:layout_marginTop="376dp"
+            android:layout_marginStart="11.48dp"
+            android:layout_marginLeft="11.48dp">
+
+            <EditText
+                android:id="@+id/fourthchar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:inputType="numberPassword"
+                android:gravity="center"
+                android:maxLength="1"
+                android:background="@android:color/transparent"/>
+        </RelativeLayout>
+        
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btn_verify"
+            android:layout_width="131dp"
+            android:layout_height="48dp"
+            android:background="@drawable/rectangle_blue"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginTop="454dp"
+            android:text="@string/verify"
+            android:textColor="#FFFFFF"
+            android:textSize="12sp"
+            android:fontFamily="@font/montserrat_semibold"
+            app:layout_constraintTop_toTopOf="parent"
+            />
+        
+        <TextView
+            android:id="@+id/txt_resend"
+            android:layout_width="142dp"
+            android:layout_height="35dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_marginTop="532dp"
+            android:textSize="12sp"
+            android:gravity="center"
+            android:text="@string/didn_t_receive_the_otp_resend"
+            android:textColor="#C2C3CC"
+            android:fontFamily="@font/montserrat_regular"/>
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

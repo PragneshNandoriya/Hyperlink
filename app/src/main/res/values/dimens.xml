@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="login_startmagin">30dp</dimen>
+    <dimen name="signup_startmagin">30dp</dimen>
+    <dimen name="phonever_startmagin">30dp</dimen>
+    <dimen name="txt_size">25dp</dimen>
+</resources>

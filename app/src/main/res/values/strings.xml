@@ -1,0 +1,22 @@
+<resources>
+    <string name="app_name">Hyperlink</string>
+    <string name="welcome_back_to">Welcome Back To</string>
+    <string name="login_to_continue">Login to continue..</string>
+    <string name="email">Email ID</string>
+    <string name="login">LOGIN</string>
+    <string name="forgot_password">Forgot Password ?</string>
+    <string name="create_new_account">Create New Account</string>
+    <string name="sign_up_to_continue">Sign up to continue..</string>
+    <string name="name">Name</string>
+    <string name="phone_number">Phone Number</string>
+    <string name="email_id">Email id</string>
+    <string name="password">Password</string>
+    <string name="address">Address</string>
+    <string name="agree_textnew">I agree to Terms &amp; Condition"</string>
+    <string name="agree_text">![CDATA[I agree to <a href="https://www.google.com">Terms &amp; Condition</a>]]"</string>
+    <string name="create_account">CREATE ACCOUNT</string>
+    <string name="phone_verification">Phone VERIFICATION</string>
+    <string name="otpdescription">OTP has been sent to your mobile number, Please Verify.</string>
+    <string name="verify">VERIFY</string>
+    <string name="didn_t_receive_the_otp_resend">Didn\'t receive the OTP? <a href="https://www.google.com"> RESEND</a></string>
+</resources>
