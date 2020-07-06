@@ -1,11 +1,13 @@
 package com.example.hyperlink.Util;
 
+import android.app.Application;
 import android.util.Log;
 
 import androidx.lifecycle.MutableLiveData;
 
 import com.example.hyperlink.Model.AllImages;
 
+import okhttp3.Cache;
 import okhttp3.OkHttpClient;
 import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Call;
@@ -19,10 +21,13 @@ public class Repository {
     API_Client api_client ;
 
     MutableLiveData<AllImages> mutableLiveData = new MutableLiveData();
-    public Repository(){
+    public Repository(Application application){
+        int cacheSize = 10 * 1024 * 1024; // 10 MB
+        Cache cache = new Cache(application.getCacheDir(), cacheSize);
         HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor();
         interceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
-        OkHttpClient client = new OkHttpClient.Builder().addInterceptor(interceptor).build();
+        OkHttpClient client = new OkHttpClient.Builder().addInterceptor(interceptor)
+                .cache(cache).build();
 
         retrofit = new Retrofit.Builder().baseUrl(API_URL.BASEURL).addConverterFactory(GsonConverterFactory.create()).
                 client(client).build();

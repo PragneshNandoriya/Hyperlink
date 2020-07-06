@@ -5,6 +5,7 @@ import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 
 import android.Manifest;
 import android.os.Bundle;
@@ -37,11 +38,13 @@ public class DataActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         progressBar = findViewById(R.id.progressbar);
         recyclerView = findViewById(R.id.recycleview);
-        recyclerView.setLayoutManager(new LinearLayoutManager(DataActivity.this));
+        StaggeredGridLayoutManager staggeredGridLayoutManager = new StaggeredGridLayoutManager(3, LinearLayoutManager.VERTICAL);
+        recyclerView.setLayoutManager(staggeredGridLayoutManager);
+      //  recyclerView.setLayoutManager(new LinearLayoutManager(DataActivity.this));
         RecycleAdapter recycleAdapter = new RecycleAdapter(list, this);
         recyclerView.setAdapter(recycleAdapter);
         myViewmodel = new ViewModelProvider(this).get(MyViewmodel.class);
-        myViewmodel.init();
+        myViewmodel.init(getApplication());
         myViewmodel.getMutableLiveData().observe(this, new Observer<AllImages>() {
 
             @Override
@@ -53,5 +56,11 @@ public class DataActivity extends AppCompatActivity {
             }
         });
 
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        getCacheDir().delete();
     }
 }

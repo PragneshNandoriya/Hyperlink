@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.hyperlink.Model.ImageData;
 import com.example.hyperlink.databinding.ListItemBinding;
+import com.squareup.picasso.Callback;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
@@ -35,13 +36,35 @@ public class RecycleAdapter extends RecyclerView.Adapter<RecycleAdapter.MyViewHo
         return new MyViewHolder(listItemBinding);
     }
 
-    @Override
+        @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
         ImageData imageData = list.get(position);
         Log.e("Adapter","url:"+imageData.getUrl());
 
-        picasso.load(imageData.getUrl()).placeholder(R.drawable.ic_launcher_background).into(holder.binding.imgUrl);
-        picasso.load(imageData.getLargeUrl()).placeholder(R.drawable.ic_launcher_background).into(holder.binding.imgLargeurl);
+        picasso.load(imageData.getUrl()).placeholder(R.drawable.ic_launcher_background).
+                into(holder.binding.imgUrl, new Callback() {
+            @Override
+            public void onSuccess() {
+                /*Log.e("picasso","Success");*/
+            }
+
+            @Override
+            public void onError(Exception e) {
+                Log.e("picasso","Error"+e.getMessage());
+            }
+        });
+        picasso.load(imageData.getLargeUrl()).placeholder(R.drawable.ic_launcher_background).
+                into(holder.binding.imgLargeurl, new Callback() {
+                    @Override
+                    public void onSuccess() {
+
+                    }
+
+                    @Override
+                    public void onError(Exception e) {
+
+                    }
+                });
     }
 
     @Override

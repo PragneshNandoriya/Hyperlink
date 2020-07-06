@@ -1,5 +1,7 @@
 package com.example.hyperlink.Util;
 
+import android.app.Application;
+
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
@@ -12,9 +14,9 @@ public class MyViewmodel extends ViewModel {
 
     }
 
-    public void init(){
+    public void init(Application application){
         if(repository == null){
-            repository = new Repository();
+            repository = new Repository(application);
             repository.call_request();
             mutableLiveData = repository.getList();
         }
