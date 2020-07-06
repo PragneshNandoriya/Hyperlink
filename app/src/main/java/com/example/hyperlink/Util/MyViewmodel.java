@@ -21,6 +21,16 @@ public class MyViewmodel extends ViewModel {
             mutableLiveData = repository.getList();
         }
     }
+    public void requestdata(Application application){
+        if(repository != null){
+            repository.call_request();
+            mutableLiveData = repository.getList();
+        }else{
+                repository = new Repository(application);
+                repository.call_request();
+                mutableLiveData = repository.getList();
+        }
+    }
 
     public MutableLiveData<AllImages> getMutableLiveData(){
         return mutableLiveData;

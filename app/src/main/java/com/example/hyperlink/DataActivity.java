@@ -1,13 +1,26 @@
 package com.example.hyperlink;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.StaggeredGridLayoutManager;
+import androidx.work.Constraints;
+import androidx.work.Data;
+import androidx.work.NetworkType;
+import androidx.work.OneTimeWorkRequest;
+import androidx.work.WorkManager;
+import androidx.work.WorkRequest;
+import androidx.work.Worker;
+import androidx.work.WorkerParameters;
 
 import android.Manifest;
+import android.app.Application;
+import android.content.Context;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -18,24 +31,28 @@ import com.example.hyperlink.Model.AllImages;
 import com.example.hyperlink.Model.ImageData;
 import com.example.hyperlink.R;
 import com.example.hyperlink.Util.MyViewmodel;
+import com.example.hyperlink.Util.NetMonitor;
 import com.felipecsl.asymmetricgridview.library.Utils;
 import com.felipecsl.asymmetricgridview.library.model.AsymmetricItem;
 import com.felipecsl.asymmetricgridview.library.widget.AsymmetricGridView;
 import com.felipecsl.asymmetricgridview.library.widget.AsymmetricGridViewAdapter;
+import com.google.gson.Gson;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class DataActivity extends AppCompatActivity {
-    MyViewmodel myViewmodel;
+    public static MyViewmodel myViewmodel;
     RecyclerView recyclerView;
     List<ImageData> list = new ArrayList<>();
     ProgressBar progressBar;
-
+    public static  Application application;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        application = getApplication();
+        Log.e("DataActivity","oncreate");
         progressBar = findViewById(R.id.progressbar);
         recyclerView = findViewById(R.id.recycleview);
         StaggeredGridLayoutManager staggeredGridLayoutManager = new StaggeredGridLayoutManager(3, LinearLayoutManager.VERTICAL);
@@ -56,11 +73,37 @@ public class DataActivity extends AppCompatActivity {
             }
         });
 
+        if(!isInternetAvailable()){
+            Gson gson = new Gson();
+          //  String s =  gson.toJson(myViewmodel);
+
+            Data.Builder builder = new Data.Builder();
+            //builder.putString("data", s);
+            Data data = builder.build();
+            Log.e("dataactivity","No internet");
+            Constraints constraints = new Constraints.Builder()
+                    .setRequiredNetworkType(NetworkType.CONNECTED)
+                    .build();
+            OneTimeWorkRequest uploadWorked = new OneTimeWorkRequest.Builder(NetMonitor.class)
+                    .setInputData(data)
+                    .setConstraints(constraints).build();
+            WorkManager.getInstance(this).enqueue(uploadWorked);
+        }
     }
+
+    private boolean isInternetAvailable() {
+        ConnectivityManager connectivityManager
+                = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo activeNetworkInfo = connectivityManager.getActiveNetworkInfo();
+        return activeNetworkInfo != null && activeNetworkInfo.isConnected();
+    }
+
 
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        getCacheDir().delete();
+
     }
+
+
 }
