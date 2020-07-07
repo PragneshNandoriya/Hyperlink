@@ -4,6 +4,7 @@ import android.content.Context;
 import android.util.Log;
 
 import androidx.annotation.NonNull;
+import androidx.work.Data;
 import androidx.work.Worker;
 import androidx.work.WorkerParameters;
 
@@ -22,11 +23,6 @@ public class NetMonitor extends Worker {
     @Override
     public Result doWork() {
         Log.e("Uploadwork","Dowork()");
-       /* String s = getInputData().getString("data");
-        Gson gson = new Gson();
-
-        MyViewmodel myViewmodel = gson.fromJson(s, MyViewmodel.class);*/
-        DataActivity.myViewmodel.requestdata(DataActivity.application);
         return Result.success();
     }
 

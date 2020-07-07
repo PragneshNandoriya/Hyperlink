@@ -1,6 +1,7 @@
 package com.example.hyperlink;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
@@ -11,6 +12,7 @@ import androidx.work.Constraints;
 import androidx.work.Data;
 import androidx.work.NetworkType;
 import androidx.work.OneTimeWorkRequest;
+import androidx.work.WorkInfo;
 import androidx.work.WorkManager;
 import androidx.work.WorkRequest;
 import androidx.work.Worker;
@@ -42,7 +44,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class DataActivity extends AppCompatActivity {
-    public static MyViewmodel myViewmodel;
+    public  MyViewmodel myViewmodel;
     RecyclerView recyclerView;
     List<ImageData> list = new ArrayList<>();
     ProgressBar progressBar;
@@ -88,6 +90,17 @@ public class DataActivity extends AppCompatActivity {
                     .setInputData(data)
                     .setConstraints(constraints).build();
             WorkManager.getInstance(this).enqueue(uploadWorked);
+            WorkManager.getInstance(this).getWorkInfoByIdLiveData(uploadWorked.getId())
+                    .observe(DataActivity.this, new Observer<WorkInfo>() {
+                        @Override
+                        public void onChanged(@Nullable WorkInfo workInfo) {
+                            Log.e("worker","get result");
+                            if (workInfo != null && workInfo.getState() == WorkInfo.State.SUCCEEDED) {
+                                Log.e("worker","get result success");
+                                myViewmodel.requestdata(getApplication());
+                                    }
+                        }
+                    });
         }
     }
 
