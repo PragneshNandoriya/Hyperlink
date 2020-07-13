@@ -43,6 +43,7 @@ import com.google.gson.Gson;
 import java.util.ArrayList;
 import java.util.List;
 
+//This isfor data Actviity
 public class DataActivity extends AppCompatActivity {
     public  MyViewmodel myViewmodel;
     RecyclerView recyclerView;
