@@ -9,7 +9,6 @@ import android.util.Log;
 
 import androidx.annotation.Nullable;
 
-//This is for Database Helper class
 public class DatabaseHelper extends SQLiteOpenHelper {
     public static  final String databasename = "Database" ;
     public  static  final String tablename = "UserData";
