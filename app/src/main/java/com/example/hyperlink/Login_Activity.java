@@ -20,6 +20,8 @@ import com.example.hyperlink.databinding.ActivityLoginBinding;
 public class Login_Activity extends AppCompatActivity {
     ActivityLoginBinding loginBinding;
 
+    private int i = 10;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
