@@ -25,6 +25,7 @@ public class Login_Activity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Log.e("LoginActivity","Oncreate");
         /*Window window = getWindow();
         WindowManager.LayoutParams winParams = window.getAttributes();
         winParams.flags &= ~WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS;
