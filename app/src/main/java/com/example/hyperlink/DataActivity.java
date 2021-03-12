@@ -113,11 +113,11 @@ public class DataActivity extends AppCompatActivity {
     }
 
 
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
+     /*   @Override
+        protected void onDestroy() {
+            super.onDestroy();
 
-    }
-
+        }
+    */
 
 }
